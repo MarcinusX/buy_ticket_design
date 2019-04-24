@@ -38,7 +38,9 @@ flutter:
   assets:
     - assets/efe-kurnaz.jpg
     - assets/rodion-kutsaev.jpg
+    - assets/rodion-kutsaev.jpeg
     - assets/steve-johnson.jpg
+    - assets/steve-johnson.jpeg
   fonts:
     - family: SF Pro Display
       fonts:

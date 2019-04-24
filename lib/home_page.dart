@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    print(Theme.of(context).typography.black.title);
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -14,9 +13,9 @@ class HomePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Header(),
-            SizedBox(height: 16),
+            SizedBox(height: 8),
             Tabs(),
-            SizedBox(height: 16),
+            SizedBox(height: 8),
             SlidingCardsView(),
             Spacer(),
             ExhibitionBottomSheet(),
