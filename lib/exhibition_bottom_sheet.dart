@@ -4,7 +4,11 @@ class ExhibitionBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 32),
+      padding: EdgeInsets.only(
+        left: 32,
+        right: 32,
+        bottom: MediaQuery.of(context).padding.bottom/2,
+      ),
       decoration: BoxDecoration(
         color: Color(0xFF162A49),
         borderRadius: BorderRadius.vertical(top: Radius.circular(32)),
