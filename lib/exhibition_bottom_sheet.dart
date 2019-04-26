@@ -7,7 +7,7 @@ class ExhibitionBottomSheet extends StatelessWidget {
       padding: EdgeInsets.only(
         left: 32,
         right: 32,
-        bottom: MediaQuery.of(context).padding.bottom/2,
+        bottom: MediaQuery.of(context).padding.bottom / 2,
       ),
       decoration: BoxDecoration(
         color: Color(0xFF162A49),
@@ -29,11 +29,11 @@ class ExhibitionBottomSheet extends StatelessWidget {
           SizedBox(height: 20),
           Row(
             children: <Widget>[
-              ExhibitionSmallCard(assetName: 'steve-johnson.jpg'),
+              ExhibitionSmallCard(assetName: 'steve-johnson.jpeg'),
               SizedBox(width: 16),
               ExhibitionSmallCard(assetName: 'efe-kurnaz.jpg'),
               SizedBox(width: 16),
-              ExhibitionSmallCard(assetName: 'rodion-kutsaev.jpg'),
+              ExhibitionSmallCard(assetName: 'rodion-kutsaev.jpeg'),
               Spacer(),
               MenuButton(),
             ],

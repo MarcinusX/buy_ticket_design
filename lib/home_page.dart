@@ -13,8 +13,9 @@ class HomePage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Header(),
             SizedBox(height: 8),
+            Header(),
+            SizedBox(height: 40),
             Tabs(),
             SizedBox(height: 8),
             SlidingCardsView(),
@@ -31,7 +32,7 @@ class Header extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 22),
+      padding: const EdgeInsets.symmetric(horizontal: 32),
       child: Text(
         'Shenzhen',
         style: TextStyle(

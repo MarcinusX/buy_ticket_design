@@ -9,17 +9,15 @@ class SlidingCardsView extends StatefulWidget {
 
 class _SlidingCardsViewState extends State<SlidingCardsView> {
   PageController pageController;
-  double offset = 0;
+  double pageOffset = 0;
 
   @override
   void initState() {
     super.initState();
     pageController = PageController(viewportFraction: 0.8);
-    pageController.addListener(onPageController);
-  }
-
-  void onPageController() {
-    setState(() => offset = pageController.page);
+    pageController.addListener(() {
+      setState(() => pageOffset = pageController.page);
+    });
   }
 
   @override
@@ -30,8 +28,8 @@ class _SlidingCardsViewState extends State<SlidingCardsView> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 380,
+    return SizedBox(
+      height: MediaQuery.of(context).size.height * 0.55,
       child: PageView(
         controller: pageController,
         children: <Widget>[
@@ -39,28 +37,13 @@ class _SlidingCardsViewState extends State<SlidingCardsView> {
             name: 'Shenzhen GLOBAL DESIGN AWARD 2018',
             date: '4.20-30',
             assetName: 'steve-johnson.jpeg',
-            offset: 0 - offset,
+            offset: pageOffset,
           ),
           SlidingCard(
             name: 'Dawan District, Guangdong Hong Kong and Macao',
             date: '4.28-31',
             assetName: 'rodion-kutsaev.jpeg',
-            offset: 1 - offset,
-          ),          SlidingCard(
-            name: 'Dawan District, Guangdong Hong Kong and Macao',
-            date: '4.28-31',
-            assetName: 'rodion-kutsaev.jpeg',
-            offset: 2 - offset,
-          ),          SlidingCard(
-            name: 'Dawan District, Guangdong Hong Kong and Macao',
-            date: '4.28-31',
-            assetName: 'rodion-kutsaev.jpeg',
-            offset: 3 - offset,
-          ),          SlidingCard(
-            name: 'Dawan District, Guangdong Hong Kong and Macao',
-            date: '4.28-31',
-            assetName: 'rodion-kutsaev.jpeg',
-            offset: 4 - offset,
+            offset: pageOffset - 1,
           ),
         ],
       ),
@@ -84,9 +67,9 @@ class SlidingCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double gauss = 48*math.exp(-(math.pow((offset-0.5), 2)/0.15));
+    double gauss = math.exp(-(math.pow((offset.abs() - 0.5), 2) / 0.08));
     return Transform.translate(
-      offset: Offset(gauss, 0),
+      offset: Offset(-32 * gauss * offset.sign, 0),
       child: Card(
         margin: EdgeInsets.only(left: 8, right: 8, bottom: 24),
         elevation: 8,
@@ -97,20 +80,17 @@ class SlidingCard extends StatelessWidget {
               borderRadius: BorderRadius.vertical(top: Radius.circular(32)),
               child: Image.asset(
                 'assets/$assetName',
-                height: 200,
-                alignment: Alignment(-offset, 0),
-                fit: BoxFit.fitHeight,
+                height: MediaQuery.of(context).size.height * 0.3,
+                alignment: Alignment(-offset.abs(), 0),
+                fit: BoxFit.none,
               ),
             ),
             SizedBox(height: 8),
             Expanded(
-              child: Transform.translate(
-                offset: Offset(48 * offset, 0),
-                child: CardContent(
-                  name: name,
-                  date: date,
-                  offset: offset,
-                ),
+              child: CardContent(
+                name: name,
+                date: date,
+                offset: gauss,
               ),
             ),
           ],
@@ -118,7 +98,6 @@ class SlidingCard extends StatelessWidget {
       ),
     );
   }
-
 }
 
 class CardContent extends StatelessWidget {
@@ -140,11 +119,17 @@ class CardContent extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text(name, style: TextStyle(fontSize: 20)),
+          Transform.translate(
+            offset: Offset(8 * offset, 0),
+            child: Text(name, style: TextStyle(fontSize: 20)),
+          ),
           SizedBox(height: 8),
           Transform.translate(
-            offset: Offset(16 * offset, 0),
-            child: Text(date, style: TextStyle(color: Colors.grey)),
+            offset: Offset(32 * offset, 0),
+            child: Text(
+              date,
+              style: TextStyle(color: Colors.grey),
+            ),
           ),
           Spacer(),
           Row(
@@ -154,7 +139,7 @@ class CardContent extends StatelessWidget {
                 child: RaisedButton(
                   color: Color(0xFF162A49),
                   child: Transform.translate(
-                    offset: Offset(32 * offset, 0),
+                    offset: Offset(24 * offset, 0),
                     child: Text('Reserve'),
                   ),
                   textColor: Colors.white,
