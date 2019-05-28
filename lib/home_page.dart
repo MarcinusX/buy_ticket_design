@@ -8,21 +8,23 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: SafeArea(
-        bottom: false,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            SizedBox(height: 8),
-            Header(),
-            SizedBox(height: 40),
-            Tabs(),
-            SizedBox(height: 8),
-            SlidingCardsView(),
-            Spacer(),
-            ExhibitionBottomSheet(),
-          ],
-        ),
+      body: Stack(
+        children: <Widget>[
+          SafeArea(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                SizedBox(height: 8),
+                Header(),
+                SizedBox(height: 40),
+                Tabs(),
+                SizedBox(height: 8),
+                SlidingCardsView(),
+              ],
+            ),
+          ),
+          ExhibitionBottomSheet(),
+        ],
       ),
     );
   }
