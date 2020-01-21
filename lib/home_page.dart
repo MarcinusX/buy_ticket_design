@@ -3,6 +3,8 @@ import 'package:buy_tickets_design/sliding_cards.dart';
 import 'package:buy_tickets_design/tabs.dart';
 import 'package:flutter/material.dart';
 
+import 'exhibition_bottom_sheet.dart';
+
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -23,7 +25,7 @@ class HomePage extends StatelessWidget {
               ],
             ),
           ),
-          ExhibitionBottomSheet(),
+          ExhibitionBottomSheet(), //use this or ScrollableExhibitionSheet
         ],
       ),
     );
